@@ -22,8 +22,8 @@ async function init() {
         }
         // jaaaaank 60-ish fps attempt.
         // todo - less suckage.
-        const fps = (timestamp - start) * 0.001;
-        if (fps >= .01) {
+        // const fps = (timestamp - start) * 0.001;
+        //if (fps >= .01) {
             start = timestamp;
 
             instance.exports.update();
@@ -34,7 +34,7 @@ async function init() {
                             displayAddr + 4 * displaySize)),
                     displayWidth, displayHeight);
             ctx.putImageData(frame, 0, 0);
-        }
+        //}
         window.requestAnimationFrame(step);
     }
     window.requestAnimationFrame(step);

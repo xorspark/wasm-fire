@@ -3,4 +3,4 @@ all:
 	llc -march=wasm32 -filetype=obj fire.ll
 	llc -march=wasm32 -filetype=obj engine.ll
 	llc -march=wasm32 -filetype=obj rand.ll
-	wasm-ld --lto-O3 --no-entry --export=getDisplay --export=getScreenWidth --export=getScreenHeight --export=setup --export=update -o fire.wasm fire.o rand.o engine.o
+	wasm-ld --strip-all --lto-O3 --no-entry --export=getDisplay --export=getScreenWidth --export=getScreenHeight --export=setup --export=update -o fire.wasm fire.o rand.o engine.o
