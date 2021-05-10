@@ -3,4 +3,4 @@ Experimenting with bare-metal wasm generation with C using ye-olde fire effects 
 
 ![Weee.](./flames.png)
 
-Colors are obviously borked, but it still looks neat. Was inspired by watching tsoding's stream on his [bare metal rust wasm browser game](https://github.com/tsoding/rust-browser-game) and reading [these fantastic notes from Aransentin](https://aransentin.github.io/cwasm/). Fun stuff.
+I was inspired by watching tsoding's stream on his [bare metal rust wasm browser game](https://github.com/tsoding/rust-browser-game) and reading [these fantastic notes from Aransentin](https://aransentin.github.io/cwasm/). Fun stuff.
