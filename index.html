@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="module">
+async function init() {
+    const { instance } = await WebAssembly.instantiateStreaming(fetch("./fire.wasm"));
+    const memoryView = new Uint8Array(instance.exports.memory.buffer);
+
+    instance.exports.setup();
+    const displayAddr = instance.exports.getDisplay();
+    const displayWidth = instance.exports.getScreenWidth();
+    const displayHeight = instance.exports.getScreenHeight();
+    const displaySize = displayWidth * displayHeight;
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext('2d');
+
+    let start;
+    function step(timestamp) {
+        if (start === undefined) {
+            start = timestamp;
+        }
+        // jaaaaank 60-ish fps attempt.
+        // todo - less suckage.
+        const fps = (timestamp - start) * 0.001;
+        if (fps >= .01) {
+            start = timestamp;
+
+            instance.exports.update();
+            const frame = new ImageData(
+                    new Uint8ClampedArray(
+                        memoryView.subarray(
+                            displayAddr,
+                            displayAddr + 4 * displaySize)),
+                    displayWidth, displayHeight);
+            ctx.putImageData(frame, 0, 0);
+        }
+        window.requestAnimationFrame(step);
+    }
+    window.requestAnimationFrame(step);
+}
+init();
+</script>
+</head>
+<body>
+<canvas id="canvas" width="640" height="480"></canvas>
+</body>
+</html>
