@@ -6,7 +6,7 @@ const unsigned int FIRE_HEIGHT = 480;
 // Palette based framebuffer. Coordinate system origin upper-left.
 unsigned int firePixels[FIRE_WIDTH * FIRE_HEIGHT];
 
-#define rgba(r, g, b, a) (int)((r << 24) + (g << 16) + (b << 8) + (a))
+#define rgba(r, g, b, a) (unsigned int)((r << 24) + (g << 16) + (b << 8) + (a))
 
 const unsigned int palette[37] = {
     rgba(0x07,0x07,0x07, 0xFF),
